@@ -2,8 +2,9 @@
 import Image from "next/image";
 import { getClient } from "@/configs/clients";
 import { Card } from "@/components/ui/Card";
+import { Stepper } from "@/components/ui/Stepper";
 import { setupAutoHeight } from "@/app/estimate/iframe-height";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Estimator from '@/components/Estimator';
 
 export default function EstimatorPage({ 
@@ -15,6 +16,8 @@ export default function EstimatorPage({
 }) {
   const client = getClient(params.client);
   if (!client) return <div className="p-8 text-white">Client not found.</div>;
+
+  const [currentStep, setCurrentStep] = useState(1);
 
   useEffect(() => {
     const off = setupAutoHeight();
@@ -39,10 +42,16 @@ export default function EstimatorPage({
             </div>
           </div>
 
-          {/* Headline */}
+          {/* Hero */}
           <h1 className="mt-5 text-xl font-semibold tracking-tight md:text-2xl text-neutral-900">
-            {client.copy?.heroTitle || "Get an estimate in less than 30 secs!"}
+            Get an estimate in 30 seconds
           </h1>
+          <p className="text-[13px] text-neutral-500 mt-1">Answer 3 quick questions.</p>
+
+          {/* Stepper */}
+          <div className="mt-4">
+            <Stepper current={currentStep} total={3} style="pills" />
+          </div>
 
           {/* Estimator component */}
           <div className="mt-5">
@@ -54,6 +63,7 @@ export default function EstimatorPage({
               webhookUrl={client.webhookUrl}
               clientConfig={client}
               embedMode={false}
+              onStepChange={setCurrentStep}
             />
           </div>
         </Card>

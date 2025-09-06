@@ -2,7 +2,6 @@
 import { useMemo, useState } from 'react';
 import { ELECTRICIAN_CONFIG as cfg } from '@/config/estimator';
 import { Card } from './ui/Card';
-import { Stepper } from './ui/Stepper';
 import { OptionTile } from './ui/OptionTile';
 import { TextInput, PrimaryButton } from './ui/Field';
 import { HomeIcon, BuildingIcon, ZapIcon, SettingsIcon, CarIcon, SizeIcon } from './ui/Icons';
@@ -15,6 +14,7 @@ export default function Estimator({
   webhookUrl,
   clientConfig,
   embedMode = false,
+  onStepChange,
 }: {
   brandName?: string;
   primaryVar?: string;
@@ -23,6 +23,7 @@ export default function Estimator({
   webhookUrl?: string;
   clientConfig?: any;
   embedMode?: boolean;
+  onStepChange?: (step: number) => void;
 } = {}) {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<Record<string,string>>({
@@ -40,6 +41,11 @@ export default function Estimator({
   }, [answers]);
 
   const setAns = (k:string,v:string)=> setAnswers(p=>({...p,[k]:v}));
+  
+  const updateStep = (newStep: number) => {
+    setStep(newStep);
+    onStepChange?.(newStep);
+  };
 
   async function fetchEstimate() {
     const res = await fetch('/api/estimate', {
@@ -74,7 +80,8 @@ export default function Estimator({
     switch(property) {
       case 'single': return <HomeIcon className="h-8 w-8 md:h-9 md:w-9" />;
       case 'condo': return <BuildingIcon className="h-8 w-8 md:h-9 md:w-9" />;
-      case 'commercial': return <BuildingIcon className="h-8 w-8 md:h-9 md:w-9" />;
+      case 'apartment': return <BuildingIcon className="h-8 w-8 md:h-9 md:w-9" />;
+      case 'mobile': return <HomeIcon className="h-8 w-8 md:h-9 md:w-9" />;
       default: return <HomeIcon className="h-8 w-8 md:h-9 md:w-9" />;
     }
   };
@@ -83,15 +90,8 @@ export default function Estimator({
     return <SizeIcon className="h-8 w-8 md:h-9 md:w-9" />;
   };
 
-  const stepperStyle = clientConfig?.theme?.stepperStyle || "pills";
-
   return (
     <div className="space-y-6">
-      {/* Stepper */}
-      <div className="p-4 rounded-2xl bg-neutral-50">
-        <Stepper current={step} total={3} style={stepperStyle} />
-      </div>
-
       {/* Step 1: Service Selection */}
       {step === 1 && (
         <div>
@@ -114,7 +114,7 @@ export default function Estimator({
           </div>
           <div className="sticky bottom-3 inset-x-4 mt-6">
             <PrimaryButton 
-              onClick={() => setStep(2)}
+              onClick={() => updateStep(2)}
               style={{ backgroundColor: primaryVar }}
             >
               Next
@@ -143,14 +143,14 @@ export default function Estimator({
           </div>
           <div className="flex justify-between mt-6">
             <button 
-              onClick={() => setStep(1)} 
+              onClick={() => updateStep(1)} 
               className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
             >
               Back
             </button>
             <div className="sticky bottom-3 inset-x-4">
               <PrimaryButton 
-                onClick={() => setStep(3)}
+                onClick={() => updateStep(3)}
                 style={{ backgroundColor: primaryVar }}
               >
                 Next
@@ -178,14 +178,14 @@ export default function Estimator({
           </div>
           <div className="flex justify-between mt-6">
             <button 
-              onClick={() => setStep(2)} 
+              onClick={() => updateStep(2)} 
               className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
             >
               Back
             </button>
             <div className="sticky bottom-3 inset-x-4">
               <PrimaryButton 
-                onClick={async () => { await fetchEstimate(); setStep(4); }}
+                onClick={async () => { await fetchEstimate(); updateStep(4); }}
                 style={{ backgroundColor: primaryVar }}
               >
                 Get Estimate
@@ -258,7 +258,7 @@ export default function Estimator({
               </div>
               <div className="flex justify-between mt-6">
                 <button 
-                  onClick={() => setStep(3)} 
+                  onClick={() => updateStep(3)} 
                   className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
                 >
                   Back
