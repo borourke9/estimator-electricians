@@ -48,11 +48,9 @@ export function PrimaryButton({
     <button
       {...rest}
       className={[
-        "h-12 w-full rounded-xl",
-        "bg-blue-600 text-white font-medium",
-        "hover:bg-blue-500 active:bg-blue-600/90",
+        "h-12 w-full rounded-xl bg-blue-600 text-white font-medium",
+        "hover:bg-blue-500 active:bg-blue-700 transition",
         "focus:outline-none focus:ring-2 focus:ring-blue-500/40",
-        "shadow-md",
         className
       ].join(" ")}
     >

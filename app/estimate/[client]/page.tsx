@@ -44,9 +44,9 @@ export default function EstimatorPage({
 
           {/* Hero */}
           <h1 className="mt-5 text-xl font-semibold tracking-tight md:text-2xl text-neutral-900">
-            Get an estimate in 30 seconds
+            Get your estimate in 30 seconds
           </h1>
-          <p className="text-[13px] text-neutral-500 mt-1">Answer 3 quick questions.</p>
+          <p className="text-[13px] text-neutral-500 mt-1">Answer 3 quick questions to see your ballpark price.</p>
 
           {/* Stepper */}
           <div className="mt-4">

@@ -144,7 +144,7 @@ export default function Estimator({
           <div className="flex justify-between mt-6">
             <button 
               onClick={() => updateStep(1)} 
-              className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
+              className="h-12 px-5 rounded-xl border border-neutral-300 text-neutral-700 bg-white hover:bg-neutral-50 transition"
             >
               Back
             </button>
@@ -179,7 +179,7 @@ export default function Estimator({
           <div className="flex justify-between mt-6">
             <button 
               onClick={() => updateStep(2)} 
-              className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
+              className="h-12 px-5 rounded-xl border border-neutral-300 text-neutral-700 bg-white hover:bg-neutral-50 transition"
             >
               Back
             </button>
@@ -259,7 +259,7 @@ export default function Estimator({
               <div className="flex justify-between mt-6">
                 <button 
                   onClick={() => updateStep(3)} 
-                  className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
+                  className="h-12 px-5 rounded-xl border border-neutral-300 text-neutral-700 bg-white hover:bg-neutral-50 transition"
                 >
                   Back
                 </button>
