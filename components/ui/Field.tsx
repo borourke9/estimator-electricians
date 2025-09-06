@@ -5,8 +5,8 @@ export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
     <input
       {...props}
       className={[
-        "h-12 w-full rounded-2xl bg-white",
-        "border border-black/10 px-4",
+        "h-12 w-full rounded-xl bg-white",
+        "border border-neutral-200 px-4",
         "text-[15px] outline-none",
         "focus:ring-2 focus:ring-blue-500/30",
         props.className || ""
@@ -48,10 +48,11 @@ export function PrimaryButton({
     <button
       {...rest}
       className={[
-        "h-12 w-full rounded-2xl",
+        "h-12 w-full rounded-xl",
         "bg-blue-600 text-white font-medium",
         "hover:bg-blue-500 active:bg-blue-600/90",
         "focus:outline-none focus:ring-2 focus:ring-blue-500/40",
+        "shadow-md",
         className
       ].join(" ")}
     >

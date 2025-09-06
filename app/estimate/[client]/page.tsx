@@ -24,7 +24,7 @@ export default function EstimatorPage({
   return (
     <main className="min-h-screen flex items-start justify-center bg-transparent px-4 py-8">
       <div className="w-full max-w-xl">
-        <Card>
+        <Card className="pb-16">
           {/* Header row */}
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
@@ -40,7 +40,7 @@ export default function EstimatorPage({
           </div>
 
           {/* Headline */}
-          <h1 className="mt-5 text-2xl md:text-3xl font-semibold text-neutral-900">
+          <h1 className="mt-5 text-xl font-semibold tracking-tight md:text-2xl text-neutral-900">
             {client.copy?.heroTitle || "Get an estimate in less than 30 secs!"}
           </h1>
 

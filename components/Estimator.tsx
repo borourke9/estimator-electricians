@@ -99,7 +99,7 @@ export default function Estimator({
             {clientConfig?.copy?.step1Title || "What service do you need?"}
           </h2>
           {clientConfig?.copy?.step1Hint && (
-            <p className="text-sm text-neutral-500 mt-1">{clientConfig.copy.step1Hint}</p>
+            <p className="text-[13px] text-neutral-500 mt-1 leading-snug">{clientConfig.copy.step1Hint}</p>
           )}
           <div className="grid grid-cols-2 gap-3 mt-4">
             {cfg.steps[0].choices.map(choice => (
@@ -112,7 +112,7 @@ export default function Estimator({
               />
             ))}
           </div>
-          <div className="flex justify-end mt-6">
+          <div className="sticky bottom-3 inset-x-4 mt-6">
             <PrimaryButton 
               onClick={() => setStep(2)}
               style={{ backgroundColor: primaryVar }}
@@ -129,7 +129,7 @@ export default function Estimator({
           <h2 className="text-lg font-semibold text-neutral-900">
             {clientConfig?.copy?.step1Title || "Select your home type"}
           </h2>
-          <p className="text-sm text-neutral-500 mt-1">Select Type</p>
+          <p className="text-[13px] text-neutral-500 mt-1 leading-snug">Select Type</p>
           <div className="grid grid-cols-2 gap-3 mt-4">
             {cfg.steps[1].choices.map(choice => (
               <OptionTile
@@ -144,16 +144,18 @@ export default function Estimator({
           <div className="flex justify-between mt-6">
             <button 
               onClick={() => setStep(1)} 
-              className="h-12 px-6 rounded-2xl border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-50"
+              className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
             >
               Back
             </button>
-            <PrimaryButton 
-              onClick={() => setStep(3)}
-              style={{ backgroundColor: primaryVar }}
-            >
-              Next
-            </PrimaryButton>
+            <div className="sticky bottom-3 inset-x-4">
+              <PrimaryButton 
+                onClick={() => setStep(3)}
+                style={{ backgroundColor: primaryVar }}
+              >
+                Next
+              </PrimaryButton>
+            </div>
           </div>
         </div>
       )}
@@ -162,7 +164,7 @@ export default function Estimator({
       {step === 3 && (
         <div>
           <h2 className="text-lg font-semibold text-neutral-900">How big is the job?</h2>
-          <p className="text-sm text-neutral-500 mt-1">Select Size</p>
+          <p className="text-[13px] text-neutral-500 mt-1 leading-snug">Select Size</p>
           <div className="grid grid-cols-2 gap-3 mt-4">
             {cfg.steps[2].choices.map(choice => (
               <OptionTile
@@ -177,16 +179,18 @@ export default function Estimator({
           <div className="flex justify-between mt-6">
             <button 
               onClick={() => setStep(2)} 
-              className="h-12 px-6 rounded-2xl border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-50"
+              className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
             >
               Back
             </button>
-            <PrimaryButton 
-              onClick={async () => { await fetchEstimate(); setStep(4); }}
-              style={{ backgroundColor: primaryVar }}
-            >
-              Get Estimate
-            </PrimaryButton>
+            <div className="sticky bottom-3 inset-x-4">
+              <PrimaryButton 
+                onClick={async () => { await fetchEstimate(); setStep(4); }}
+                style={{ backgroundColor: primaryVar }}
+              >
+                Get Estimate
+              </PrimaryButton>
+            </div>
           </div>
         </div>
       )}
@@ -196,20 +200,30 @@ export default function Estimator({
         <div className="space-y-6">
           <div>
             <h2 className="text-lg font-semibold text-neutral-900">Your Estimate</h2>
-            <p className="text-sm text-neutral-500 mt-1">Ballpark pricing</p>
+            <p className="text-[13px] text-neutral-500 mt-1 leading-snug">Ballpark pricing</p>
             {preview ? (
-              <div className="rounded-2xl border p-6 text-center mt-4" style={{ 
-                borderColor: primaryVar + '20', 
-                backgroundColor: primaryVar + '05' 
-              }}>
-                <div className={`text-3xl md:text-4xl font-bold ${locked ? 'blur-sm select-none' : ''}`} style={{ color: primaryVar }}>
-                  ${preview.min.toLocaleString()} – ${preview.max.toLocaleString()}
+              <div className="mt-5 rounded-xl border border-neutral-200 p-4 bg-white shadow-sm">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <div className="text-xs text-neutral-500">Estimated Range</div>
+                    <div className={`text-2xl font-semibold ${locked ? 'blur-[3px] select-none' : ''}`}>
+                      ${preview.min.toLocaleString()} – ${preview.max.toLocaleString()}
+                    </div>
+                    <div className={`text-xs text-blue-600 mt-1 ${locked ? 'blur-[1px] select-none' : ''}`}>
+                      ~${preview.monthly}/mo (sample financing)
+                    </div>
+                  </div>
+                  {locked && (
+                    <button 
+                      onClick={() => setLocked(false)}
+                      className="h-10 px-4 rounded-lg bg-blue-600 text-white font-medium"
+                    >
+                      Reveal & Continue
+                    </button>
+                  )}
                 </div>
-                <div className={`text-sm mt-2 ${locked ? 'blur-[1px] select-none' : ''}`} style={{ color: primaryVar }}>
-                  ~${preview.monthly}/mo (sample financing)
-                </div>
-                <p className={`text-xs text-neutral-500 mt-3 ${locked ? 'blur-[1px] select-none' : ''}`}>
-                  {cfg.disclaimer}
+                <p className={`text-[11px] text-neutral-500 mt-2 ${locked ? 'blur-[1px] select-none' : ''}`}>
+                  * Final price subject to site review
                 </p>
               </div>
             ) : (
@@ -222,7 +236,7 @@ export default function Estimator({
           {locked ? (
             <div>
               <h2 className="text-lg font-semibold text-neutral-900">Get your full estimate</h2>
-              <p className="text-sm text-neutral-500 mt-1">We'll send it to you</p>
+              <p className="text-[13px] text-neutral-500 mt-1 leading-snug">We'll send it to you</p>
               <div className="space-y-4 mt-4">
                 <TextInput 
                   placeholder="Full name"
@@ -245,19 +259,21 @@ export default function Estimator({
               <div className="flex justify-between mt-6">
                 <button 
                   onClick={() => setStep(3)} 
-                  className="h-12 px-6 rounded-2xl border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-50"
+                  className="text-sm font-medium border border-neutral-200 rounded-lg px-4 h-10 bg-white hover:bg-neutral-50"
                 >
                   Back
                 </button>
-                <PrimaryButton 
-                  onClick={submitLead} 
-                  disabled={sending}
-                  style={{ backgroundColor: primaryVar }}
-                >
-                  {sending ? 'Sending…' : 'Send My Estimate'}
-                </PrimaryButton>
+                <div className="sticky bottom-3 inset-x-4">
+                  <PrimaryButton 
+                    onClick={submitLead} 
+                    disabled={sending}
+                    style={{ backgroundColor: primaryVar }}
+                  >
+                    {sending ? 'Sending…' : 'Send My Estimate'}
+                  </PrimaryButton>
+                </div>
               </div>
-              <p className="text-xs text-neutral-500 text-center mt-4">
+              <p className="text-[11px] text-neutral-500 mt-2 text-center">
                 By continuing you agree to be contacted about your estimate.
               </p>
             </div>

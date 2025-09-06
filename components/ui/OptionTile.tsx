@@ -10,17 +10,17 @@ export function OptionTile({
     <button
       onClick={onClick}
       className={[
-        "group relative rounded-[calc(var(--radius)-8px)] border border-black/5",
+        "group relative rounded-xl border",
         "shadow-sm hover:shadow-md transition transform hover:-translate-y-[1px]",
-        "p-4 md:p-5 h-28 w-full text-left",
-        "focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]/40",
+        "h-20 px-4 py-3 w-full text-left",
+        "focus:outline-none focus:ring-2 focus:ring-blue-500/40",
         selected
-          ? "border-[color:var(--brand)] bg-[color:var(--brand-soft)] ring-1 ring-[color:var(--brand)]/30"
-          : "bg-white",
+          ? "border-blue-600 bg-[#EAF2FF] ring-1 ring-blue-600/20"
+          : "border-neutral-200 bg-white",
       ].join(" ")}
     >
-      <div className="h-8 w-8 md:h-9 md:w-9 text-neutral-700">{icon}</div>
-      <div className="mt-3 text-sm md:text-base font-medium text-neutral-800">{label}</div>
+      <div className="h-5 w-5 text-neutral-700 group-hover:text-blue-600">{icon}</div>
+      <div className="mt-2 text-sm font-medium text-neutral-800">{label}</div>
     </button>
   );
 }
