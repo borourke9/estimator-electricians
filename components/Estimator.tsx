@@ -86,17 +86,15 @@ export default function Estimator({
   const stepperStyle = clientConfig?.theme?.stepperStyle || "pills";
 
   return (
-    <div className={embedMode ? "space-y-4" : "space-y-5 md:space-y-7"}>
+    <div className="space-y-6">
       {/* Stepper */}
-      {!embedMode && (
-        <div className="p-4 rounded-2xl bg-neutral-50">
-          <Stepper current={step} total={3} style={stepperStyle} />
-        </div>
-      )}
+      <div className="p-4 rounded-2xl bg-neutral-50">
+        <Stepper current={step} total={3} style={stepperStyle} />
+      </div>
 
       {/* Step 1: Service Selection */}
       {step === 1 && (
-        <div className={embedMode ? "" : "p-5 md:p-7 rounded-2xl bg-white border border-black/5"}>
+        <div>
           <h2 className="text-lg font-semibold text-neutral-900">
             {clientConfig?.copy?.step1Title || "What service do you need?"}
           </h2>
@@ -127,7 +125,7 @@ export default function Estimator({
 
       {/* Step 2: Property Type */}
       {step === 2 && (
-        <div className={embedMode ? "" : "p-5 md:p-7 rounded-2xl bg-white border border-black/5"}>
+        <div>
           <h2 className="text-lg font-semibold text-neutral-900">
             {clientConfig?.copy?.step1Title || "Select your home type"}
           </h2>
@@ -162,7 +160,7 @@ export default function Estimator({
 
       {/* Step 3: Scope */}
       {step === 3 && (
-        <div className={embedMode ? "" : "p-5 md:p-7 rounded-2xl bg-white border border-black/5"}>
+        <div>
           <h2 className="text-lg font-semibold text-neutral-900">How big is the job?</h2>
           <p className="text-sm text-neutral-500 mt-1">Select Size</p>
           <div className="grid grid-cols-2 gap-3 mt-4">
@@ -195,8 +193,8 @@ export default function Estimator({
 
       {/* Step 4: Results */}
       {step === 4 && (
-        <div className={embedMode ? "space-y-4" : "space-y-6"}>
-          <div className={embedMode ? "" : "p-5 md:p-7 rounded-2xl bg-white border border-black/5"}>
+        <div className="space-y-6">
+          <div>
             <h2 className="text-lg font-semibold text-neutral-900">Your Estimate</h2>
             <p className="text-sm text-neutral-500 mt-1">Ballpark pricing</p>
             {preview ? (
@@ -222,7 +220,7 @@ export default function Estimator({
           </div>
 
           {locked ? (
-            <div className={embedMode ? "" : "p-5 md:p-7 rounded-2xl bg-white border border-black/5"}>
+            <div>
               <h2 className="text-lg font-semibold text-neutral-900">Get your full estimate</h2>
               <p className="text-sm text-neutral-500 mt-1">We'll send it to you</p>
               <div className="space-y-4 mt-4">
@@ -264,7 +262,7 @@ export default function Estimator({
               </p>
             </div>
           ) : (
-            <div className={embedMode ? "" : "p-5 md:p-7 rounded-2xl bg-white border border-black/5"}>
+            <div>
               <div 
                 className="rounded-2xl border p-6 text-center"
                 style={{ 
