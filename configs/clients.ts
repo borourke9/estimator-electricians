@@ -19,6 +19,7 @@ export type ClientConfig = {
   theme: ThemeSpec;
   copy: {
     heroTitle: string;
+    sub: string;
     step1Title: string;
     step1Hint?: string;
   };
@@ -43,7 +44,8 @@ export const CLIENTS: ClientConfig[] = [
       density: "comfortable",
     },
     copy: {
-      heroTitle: "Get an estimate in less than 30 secs!",
+      heroTitle: "Get your estimate in 30 seconds",
+      sub: "Answer 3 quick questions to see your ballpark price.",
       step1Title: "What service do you need?",
       step1Hint: "Select Service",
     },
@@ -65,7 +67,8 @@ export const CLIENTS: ClientConfig[] = [
       density: "cozy",
     },
     copy: {
-      heroTitle: "Quick electrical estimates in 30 seconds!",
+      heroTitle: "Get your estimate in 30 seconds",
+      sub: "Answer 3 quick questions to see your ballpark price.",
       step1Title: "Select your home type",
       step1Hint: "Select Type",
     },
@@ -86,7 +89,8 @@ export const CLIENTS: ClientConfig[] = [
       density: "spacious",
     },
     copy: {
-      heroTitle: "Professional electrical estimates in under 30 seconds",
+      heroTitle: "Get your estimate in 30 seconds",
+      sub: "Answer 3 quick questions to see your ballpark price.",
       step1Title: "What electrical work do you need?",
       step1Hint: "Choose Service",
     },

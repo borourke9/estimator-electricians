@@ -112,13 +112,21 @@ export default function Estimator({
               />
             ))}
           </div>
-          <div className="sticky bottom-3 inset-x-4 mt-6">
-            <PrimaryButton 
+          <div className="mt-5 flex gap-3">
+            <button 
+              type="button" 
+              onClick={() => updateStep(1)} 
+              className="h-12 px-5 rounded-xl border border-neutral-300 text-neutral-700 bg-white hover:bg-neutral-50 transition"
+            >
+              Back
+            </button>
+            <button 
+              type="button" 
               onClick={() => updateStep(2)}
-              style={{ backgroundColor: primaryVar }}
+              className="h-12 flex-1 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 active:bg-blue-700 transition"
             >
               Next
-            </PrimaryButton>
+            </button>
           </div>
         </div>
       )}
@@ -141,21 +149,21 @@ export default function Estimator({
               />
             ))}
           </div>
-          <div className="flex justify-between mt-6">
+          <div className="mt-5 flex gap-3">
             <button 
+              type="button" 
               onClick={() => updateStep(1)} 
               className="h-12 px-5 rounded-xl border border-neutral-300 text-neutral-700 bg-white hover:bg-neutral-50 transition"
             >
               Back
             </button>
-            <div className="sticky bottom-3 inset-x-4">
-              <PrimaryButton 
-                onClick={() => updateStep(3)}
-                style={{ backgroundColor: primaryVar }}
-              >
-                Next
-              </PrimaryButton>
-            </div>
+            <button 
+              type="button" 
+              onClick={() => updateStep(3)}
+              className="h-12 flex-1 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 active:bg-blue-700 transition"
+            >
+              Next
+            </button>
           </div>
         </div>
       )}
@@ -176,21 +184,21 @@ export default function Estimator({
               />
             ))}
           </div>
-          <div className="flex justify-between mt-6">
+          <div className="mt-5 flex gap-3">
             <button 
+              type="button" 
               onClick={() => updateStep(2)} 
               className="h-12 px-5 rounded-xl border border-neutral-300 text-neutral-700 bg-white hover:bg-neutral-50 transition"
             >
               Back
             </button>
-            <div className="sticky bottom-3 inset-x-4">
-              <PrimaryButton 
-                onClick={async () => { await fetchEstimate(); updateStep(4); }}
-                style={{ backgroundColor: primaryVar }}
-              >
-                Get Estimate
-              </PrimaryButton>
-            </div>
+            <button 
+              type="button" 
+              onClick={async () => { await fetchEstimate(); updateStep(4); }}
+              className="h-12 flex-1 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 active:bg-blue-700 transition"
+            >
+              Get Estimate
+            </button>
           </div>
         </div>
       )}
@@ -256,22 +264,22 @@ export default function Estimator({
                   onChange={e => setLead(v => ({...v, phone: e.target.value}))}
                 />
               </div>
-              <div className="flex justify-between mt-6">
+              <div className="mt-5 flex gap-3">
                 <button 
+                  type="button" 
                   onClick={() => updateStep(3)} 
                   className="h-12 px-5 rounded-xl border border-neutral-300 text-neutral-700 bg-white hover:bg-neutral-50 transition"
                 >
                   Back
                 </button>
-                <div className="sticky bottom-3 inset-x-4">
-                  <PrimaryButton 
-                    onClick={submitLead} 
-                    disabled={sending}
-                    style={{ backgroundColor: primaryVar }}
-                  >
-                    {sending ? 'Sending…' : 'Send My Estimate'}
-                  </PrimaryButton>
-                </div>
+                <button 
+                  type="button" 
+                  onClick={submitLead} 
+                  disabled={sending}
+                  className="h-12 flex-1 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 active:bg-blue-700 transition disabled:opacity-50"
+                >
+                  {sending ? 'Sending…' : 'Send My Estimate'}
+                </button>
               </div>
               <p className="text-[11px] text-neutral-500 mt-2 text-center">
                 By continuing you agree to be contacted about your estimate.

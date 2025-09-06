@@ -43,10 +43,10 @@ export default function EstimatorPage({
           </div>
 
           {/* Hero */}
-          <h1 className="mt-5 text-xl font-semibold tracking-tight md:text-2xl text-neutral-900">
-            Get your estimate in 30 seconds
+          <h1 className="mt-5 text-xl md:text-2xl font-semibold tracking-tight text-neutral-900">
+            {client.copy?.heroTitle || "Get your estimate in 30 seconds"}
           </h1>
-          <p className="text-[13px] text-neutral-500 mt-1">Answer 3 quick questions to see your ballpark price.</p>
+          <p className="text-[13px] text-neutral-500 mt-1">{client.copy?.sub || "Answer 3 quick questions to see your ballpark price."}</p>
 
           {/* Stepper */}
           <div className="mt-4">
